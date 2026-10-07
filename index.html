@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>POLTEN Brand Proposal | Dungsam Polymers Limited</title>
+<style>
+:root{--ink:#16233a;--weave:#1d3050;--saffron:#e3921a;--maroon:#8c2b1e;--paper:#f3f2ee;--mute:#5b6577}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{height:100vh;height:100dvh;background:#0e1626;color:var(--paper);font-family:"Segoe UI",Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;overflow:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+header{padding:10px 16px 2px;text-align:center;font-size:14px;color:#aeb8cc}
+header b{color:var(--saffron)}
+.stage{overflow:hidden;flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;perspective:2600px;padding:6px}
+#book{position:relative;transition:transform .9s ease;touch-action:pan-y;cursor:pointer;user-select:none}
+.leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.45,.05,.25,1)}
+.leaf.flipped{transform:rotateY(-180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.face.bk{transform:rotateY(180deg)}
+.page{background:var(--paper);color:var(--ink);font-size:calc(var(--u,1)*14px);line-height:1.45;padding:2.4em 2.2em 2em;box-shadow:0 .2em 1.2em rgba(0,0,0,.45)}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent 9%)}
+.face.bk::after{background:linear-gradient(270deg,rgba(0,0,0,.22),transparent 9%)}
+.page h2{font-family:"Palatino Linotype","Book Antiqua",Georgia,serif;font-size:1.7em;line-height:1.15;margin-bottom:.5em;padding-bottom:.35em;border-bottom:.15em solid var(--saffron);display:inline-block}
+.page h3{font-family:"Palatino Linotype",Georgia,serif;font-size:1.1em;margin:.9em 0 .25em;color:var(--maroon)}
+.page p{margin-bottom:.7em}
+.page ul{margin:.3em 0 .7em 1.2em}
+.page li{margin-bottom:.3em}
+.pn{position:absolute;bottom:1em;left:0;right:0;text-align:center;font-size:.75em;color:var(--mute)}
+.quote{font-family:"Palatino Linotype",Georgia,serif;font-style:italic;font-size:1.15em;border-left:.25em solid var(--saffron);padding:.2em 0 .2em .8em;margin:.8em 0;color:var(--weave)}
+.cover,.back{background:var(--weave);color:#fff;display:flex;flex-direction:column;justify-content:center}
+.cover::before,.back::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 2px,transparent 2px 9px),repeating-linear-gradient(90deg,rgba(0,0,0,.25) 0 2px,transparent 2px 9px)}
+.cover>*,.back>*{position:relative}
+.logo{font-family:"Palatino Linotype",Georgia,serif;font-size:3.4em;font-weight:700;letter-spacing:.04em;color:#fff;line-height:1}
+.logo i{color:var(--saffron);font-style:normal}
+.bar{width:4em;height:.3em;background:var(--saffron);margin:1em 0}
+.cover small,.back small{color:#c5cee0;font-size:.85em}
+.tag{font-family:"Palatino Linotype",Georgia,serif;font-style:italic;font-size:1.15em;color:var(--saffron)}
+.split{display:flex;gap:.6em;margin:.8em 0}
+.split div{flex:1;padding:.9em .6em;text-align:center;border-radius:.3em;background:var(--weave);color:#fff;font-size:.92em}
+.split b{display:block;font-family:"Palatino Linotype",Georgia,serif;font-size:2em;color:var(--saffron)}
+.cols{display:flex;gap:.8em}.cols>div{flex:1;padding:.7em;border:.08em solid #c9ccd4;border-radius:.3em}
+.cols h3{margin-top:0}.cols ul{font-size:.92em;margin-left:1em}
+.tg{border-left:.3em solid var(--maroon);background:#fff;padding:.7em .9em;margin-bottom:.7em;font-family:"Palatino Linotype",Georgia,serif;font-size:1.15em}
+.tg small{display:block;font-family:"Segoe UI",sans-serif;font-size:.7em;color:var(--mute)}
+.qa{margin-bottom:.7em;font-size:.93em}.qa b{color:var(--maroon)}
+.toc{list-style:none;margin:0}.toc li{display:flex;justify-content:space-between;border-bottom:.06em dotted #99a;padding:.3em 0}
+.toc span:last-child{color:var(--mute)}
+.ctrl{display:flex;gap:10px;align-items:center;padding:8px 0 14px}
+button{background:var(--saffron);color:#1a1205;border:0;border-radius:6px;padding:9px 18px;font-size:14px;font-weight:600;cursor:pointer}
+button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+#ind{min-width:130px;text-align:center;font-size:14px;color:#aeb8cc}
+@media (prefers-reduced-motion:reduce){.leaf,#book{transition-duration:.01s}}
+</style>
+</head>
+<body>
+<header><b>POLTEN</b> Brand Proposal &middot; tap the right or left side, swipe, or use the arrow keys</header>
+<div class="stage"><div id="book">
+
+<!-- Leaf 1: cover / contents -->
+<div class="leaf">
+<div class="face page cover">
+  <small>Brand Proposal Report</small>
+  <div class="logo" style="margin-top:.5em">POL<i>TEN</i></div>
+  <div class="bar"></div>
+  <p style="font-size:1.05em">The Future Brand of<br>Dungsam Polymers Limited</p>
+  <p class="tag">Engineered for Strength.<br>Built for the Future.</p>
+  <small style="margin-top:3em">Prepared by Tashi Phuntsho<br>Dy. Manager, IT | CS<br>June 2026<br>Dungsam Polymers Limited, a DHI Group Company</small>
+</div>
+<div class="face page bk"><h2>Table of Contents</h2>
+<ul class="toc">
+<li><span>1. Executive Summary</span><span>3</span></li>
+<li><span>2. Brand Name: POLTEN</span><span>4</span></li>
+<li><span>3. Brand Story</span><span>5</span></li>
+<li><span>4-5. Vision and Mission</span><span>6</span></li>
+<li><span>6-7. Purpose and Values</span><span>7</span></li>
+<li><span>8. Why POLTEN? Strategic Advantages</span><span>8-9</span></li>
+<li><span>10. Proposed Taglines</span><span>10</span></li>
+<li><span>11. Alignment with the DHI 10X Roadmap</span><span>11</span></li>
+<li><span>12. Anticipated Questions</span><span>12</span></li>
+<li><span>13. Recommendation</span><span>13</span></li>
+</ul><div class="pn">2</div></div>
+</div>
+
+<!-- Leaf 2 -->
+<div class="leaf">
+<div class="face page"><h2>1. Executive Summary</h2>
+<p>This report proposes <b>POLTEN</b> as the flagship product and packaging brand of Dungsam Polymers Limited (DPL). POLTEN is a strategically developed brand name that combines industrial strength, polymer technology, Bhutanese identity, and future business scalability.</p>
+<p>The name is designed to support the company's long-term growth ambitions in packaging, industrial textiles, advanced polymer products, sustainable materials, and export markets.</p>
+<p>Unlike conventional industry names limited to a specific product or local reference, POLTEN provides a strong foundation for building a globally recognized Bhutanese industrial brand.</p>
+<p>POLTEN is positioned as the flagship industrial packaging brand of DPL, representing strength, reliability, and innovation in polymer-based packaging solutions, while maintaining a strong Bhutanese identity and global commercial appeal.</p>
+<div class="pn">3</div></div>
+<div class="face page bk"><h2>2. Brand Name: POLTEN</h2>
+<p><b>Brand structure:</b> POL + TEN</p>
+<div class="split">
+<div><b>POL</b>Represents Polymer, the core technology and manufacturing expertise of Dungsam Polymers Limited</div>
+<div><b>TEN</b>Derived from the Bhutanese concept of strength, support, stability, resilience, and foundation</div>
+</div>
+<p class="quote">Strength Engineered Through Polymer Innovation.</p>
+<div class="pn">4</div></div>
+</div>
+
+<!-- Leaf 3 -->
+<div class="leaf">
+<div class="face page"><h2>3. Brand Story</h2>
+<p>Bhutan is entering a new era of industrial development. As industries grow, infrastructure expands, and trade increases, the need for reliable packaging solutions becomes increasingly important. Behind every bag of cement, every agricultural product, every feed product, and every industrial shipment lies a simple requirement: strength.</p>
+<p>POLTEN was created to symbolize that strength. The name reflects the company's expertise in polymer technology while honoring Bhutanese values of resilience, trust, and long-term sustainability.</p>
+<p>POLTEN is more than a product name. It represents a commitment to protecting products, supporting industries, enabling trade, and contributing to Bhutan's economic growth. Every POLTEN product is designed to carry value safely, efficiently, and reliably from manufacturer to customer.</p>
+<div class="pn">5</div></div>
+<div class="face page bk"><h2>4. Vision &amp; 5. Mission</h2>
+<h3>4. Brand Vision</h3>
+<p>To become the most trusted industrial packaging brand originating from Bhutan and recognized across regional and international markets.</p>
+<h3>5. Brand Mission</h3>
+<p>To deliver innovative, reliable, and sustainable polymer-based packaging solutions that protect value, support industry, and create long-term stakeholder confidence.</p>
+<div class="pn">6</div></div>
+</div>
+
+<!-- Leaf 4 -->
+<div class="leaf">
+<div class="face page"><h2>6. Purpose &amp; 7. Values</h2>
+<h3>6. Brand Purpose</h3>
+<p>POLTEN exists to strengthen supply chains through dependable packaging solutions that support economic growth and industrial development.</p>
+<h3>7. Brand Values</h3>
+<ul>
+<li><b>Strength:</b> products engineered for durability and performance.</li>
+<li><b>Reliability:</b> consistent quality and dependable supply.</li>
+<li><b>Innovation:</b> continuous improvement in manufacturing and product development.</li>
+<li><b>Sustainability:</b> responsible use of resources and commitment to environmental stewardship.</li>
+<li><b>Bhutanese Excellence:</b> reflecting the values, integrity, and aspirations of Bhutanese industry.</li>
+</ul><div class="pn">7</div></div>
+<div class="face page bk"><h2>8. Why POLTEN?</h2>
+<h3>8.1 Future-Proof Brand Architecture</h3>
+<p>The brand is not restricted to any single product category, so it remains relevant as DPL's portfolio evolves.</p>
+<div class="cols">
+<div><h3>Today</h3><ul><li>PP Woven Sacks</li><li>Cement Bags</li><li>Agricultural Packaging</li><li>Feed Bags</li></ul></div>
+<div><h3>Tomorrow</h3><ul><li>Jumbo Bags (FIBC)</li><li>BOPP Packaging</li><li>Industrial Fabrics</li><li>Geotextiles</li><li>Recycled Polymer Products</li><li>Sustainable Packaging Solutions</li></ul></div>
+</div>
+<p style="margin-top:.7em">POLTEN remains relevant across all future business segments.</p>
+<div class="pn">8</div></div>
+</div>
+
+<!-- Leaf 5 -->
+<div class="leaf">
+<div class="face page"><h2>8. Why POLTEN? (cont.)</h2>
+<h3>8.2 International Appeal</h3>
+<ul><li>Easy to pronounce</li><li>Easy to remember</li><li>Professional sounding</li><li>Suitable for export markets</li><li>Suitable for trademark registration</li></ul>
+<p>The name can be marketed effectively in Bhutan, India, Bangladesh, Nepal, ASEAN countries, and international markets.</p>
+<h3>8.3 Premium Positioning</h3>
+<p>POLTEN communicates strength, performance, reliability, and engineering excellence rather than simply describing a product. This supports long-term premium brand positioning.</p>
+<div class="pn">9</div></div>
+<div class="face page bk"><h2>9. Promise &amp; 10. Taglines</h2>
+<h3>9. Brand Promise</h3>
+<p class="quote" style="font-size:1em">Every POLTEN product is engineered to deliver strength, reliability, and consistent performance in demanding industrial environments.</p>
+<h3>10. Proposed Taglines</h3>
+<div class="tg"><small>Option 1</small>Strength That Carries Growth</div>
+<div class="tg"><small>Option 2</small>Protecting Value. Delivering Trust.</div>
+<div class="tg"><small>Option 3</small>Reliable Strength for Every Journey</div>
+<div class="pn">10</div></div>
+</div>
+
+<!-- Leaf 6 -->
+<div class="leaf">
+<div class="face page"><h2>11. Alignment with DHI 10X</h2>
+<p style="font-size:.88em">The 10X Roadmap of Druk Holding and Investments (DHI) is a strategic blueprint for the exponential transformation of the DHI Group over the next decade, aligned with Bhutan's 21st Century Economic Roadmap and inspired by Gelephu Mindfulness City. Objectives include tenfold growth toward Nu. 700 billion revenue by 2035, three pillars (Portfolio Management, Investment, Innovation), and growth of the Bhutan Future Fund to Nu. 30 billion.</p>
+<ul style="font-size:.88em">
+<li><b>11.1 Scalability:</b> not restricted to woven sacks; relevant as DPL expands into BOPP, geotextiles, and recycled polymers in the Future Zone.</li>
+<li><b>11.2 International appeal:</b> easy to pronounce, memorable, and professional for export markets.</li>
+<li><b>11.3 Innovation:</b> supports a research-driven ecosystem based on Low Volume, High Value production.</li>
+<li><b>11.4 Sustainable growth:</b> mirrors DHI's Group-wide ESG commitments.</li>
+<li><b>11.5 Architecture:</b> one master brand, e.g. POLTEN CementPro or POLTEN AgroShield.</li>
+</ul><div class="pn">11</div></div>
+<div class="face page bk"><h2>12. Anticipated Questions</h2>
+<div class="qa"><b>Why not use a Bhutan-specific name?</b><br>A purely Bhutan-centric name may limit international market perception. POLTEN balances Bhutanese identity with global competitiveness.</div>
+<div class="qa"><b>Why not use Dungsam as the product brand?</b><br>Corporate brands and product brands serve different purposes. POLTEN allows DPL to develop a strong consumer and industrial market identity while preserving corporate credibility.</div>
+<div class="qa"><b>Will the brand become outdated?</b><br>No. POLTEN is technology-based rather than product-based, enabling long-term relevance even as product lines evolve.</div>
+<div class="qa"><b>Can the brand support exports?</b><br>Yes. The name is simple, memorable, and internationally acceptable.</div>
+<div class="pn">12</div></div>
+</div>
+
+<!-- Leaf 7: recommendation / back cover -->
+<div class="leaf">
+<div class="face page"><h2>13. Recommendation</h2>
+<p>I recommend that Dungsam Polymers Limited adopt <b>POLTEN&trade;</b> as its flagship packaging and industrial products brand. The brand provides:</p>
+<ul><li>Strong Bhutanese roots</li><li>Industrial credibility</li><li>Future scalability</li><li>International appeal</li><li>Premium positioning</li><li>Long-term brand equity potential</li></ul>
+<p class="quote">POLTEN is not simply a name. It is a platform upon which Dungsam Polymers Limited can build a lasting industrial legacy.</p>
+<p style="font-size:.92em">In summary, POLTEN is a strong, strategic choice that provides the industrial credibility and future scalability required to support DPL's contribution to the DHI 10X journey.</p>
+<div class="pn">13</div></div>
+<div class="face page bk back">
+  <small>Closing Statement</small>
+  <div class="logo" style="margin-top:.4em">POL<i>TEN</i></div>
+  <div class="bar"></div>
+  <p style="color:#dfe5f1">POLTEN represents the strength of polymer technology, the resilience of Bhutanese industry, and the ambition of Dungsam Polymers Limited to become a leading packaging solutions provider in the region.</p>
+  <p class="tag" style="margin-top:1em">Engineered for Strength.<br>Built for the Future.</p>
+</div>
+</div>
+
+</div></div>
+<div class="ctrl">
+  <button id="prev" aria-label="Previous page">Previous</button>
+  <span id="ind"></span>
+  <button id="next" aria-label="Next page">Next</button>
+  <button id="fs" aria-label="Toggle full screen">Full screen</button>
+</div>
+
+<script>
+(function(){
+  var book=document.getElementById("book"),stage=document.querySelector(".stage"),
+      leaves=[].slice.call(book.querySelectorAll(".leaf")),N=leaves.length,cur=0,
+      ind=document.getElementById("ind"),prevB=document.getElementById("prev"),nextB=document.getElementById("next");
+  var single=false,p=0;
+  function fit(){
+    var w=stage.clientWidth-12,h=stage.clientHeight-12,sg=w<700;
+    if(sg&&!single){single=true;p=cur===0?0:2*cur-1}
+    if(!sg&&single){single=false;cur=Math.ceil(p/2)}
+    var pw=Math.max(120,Math.min(520,sg?w:w/2,h*420/594));
+    book.style.width=(pw*2)+"px";book.style.height=(pw*594/420)+"px";
+    book.querySelectorAll(".page").forEach(function(e){e.style.setProperty("--u",(pw/420).toFixed(3))});
+    render(-1);
+  }
+  function render(turn){
+    var c=single?Math.ceil(p/2):cur;
+    leaves.forEach(function(l,i){
+      l.classList.toggle("flipped",i<c);
+      l.style.zIndex=(i===turn)?50:(i<c?i+1:N-i);
+    });
+    if(single){
+      book.style.transform=p%2===0?"translateX(-25%)":"translateX(25%)";
+      ind.textContent="Page "+(p+1)+" of "+(2*N);
+      prevB.disabled=p===0;nextB.disabled=p===2*N-1;
+    }else{
+      book.style.transform=cur===0?"translateX(-25%)":(cur===N?"translateX(25%)":"none");
+      ind.textContent=cur===0?"Cover":(cur===N?"Back cover":"Pages "+(2*cur)+" - "+(2*cur+1)+" of "+(2*N));
+      prevB.disabled=cur===0;nextB.disabled=cur===N;
+    }
+  }
+  function next(){
+    var t=-1;
+    if(single){if(p>=2*N-1)return;var o=Math.ceil(p/2);p++;if(Math.ceil(p/2)>o)t=o}
+    else{if(cur>=N)return;t=cur;cur++}
+    render(t);setTimeout(function(){render(-1)},950)
+  }
+  function prev(){
+    var t=-1;
+    if(single){if(p<=0)return;var o=Math.ceil(p/2);p--;if(Math.ceil(p/2)<o)t=Math.ceil(p/2)}
+    else{if(cur<=0)return;cur--;t=cur}
+    render(t);setTimeout(function(){render(-1)},950)
+  }
+  prevB.onclick=prev;nextB.onclick=next;
+  document.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" ")next();
+    if(e.key==="ArrowLeft"||e.key==="PageUp")prev();
+  });
+  var sx=null;
+  book.addEventListener("pointerdown",function(e){sx=e.clientX});
+  book.addEventListener("pointerup",function(e){
+    if(sx===null)return;var dx=e.clientX-sx;sx=null;
+    if(Math.abs(dx)>40){dx<0?next():prev();return}
+    var r=(single?stage:book).getBoundingClientRect();
+    (e.clientX<r.left+r.width/2)?prev():next();
+  });
+  document.getElementById("fs").onclick=function(){
+    var d=document.documentElement;
+    if(!document.fullscreenElement){d.requestFullscreen&&d.requestFullscreen()}else{document.exitFullscreen()}
+  };
+  window.addEventListener("resize",fit);
+  fit();
+})();
+</script>
+</body>
+</html>
