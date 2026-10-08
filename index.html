@@ -8,11 +8,11 @@
 :root{--ink:#16233a;--weave:#1d3050;--saffron:#e3921a;--maroon:#8c2b1e;--paper:#f3f2ee;--mute:#5b6577}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{height:100vh;height:100dvh;background:#0e1626;color:var(--paper);font-family:"Segoe UI",Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;overflow:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
-header{padding:10px 16px 2px;text-align:center;font-size:14px;color:#aeb8cc}
+body{height:100vh;height:100dvh;background:#0e1626;color:var(--paper);font-family:"Segoe UI",Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;overflow:hidden;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+header{padding:10px 16px 2px;text-align:center;font-size:clamp(11px,1.4vw,16px);color:#aeb8cc}
 header b{color:var(--saffron)}
 .stage{overflow:hidden;flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;perspective:2600px;padding:6px}
-#book{position:relative;transition:transform .9s ease;touch-action:pan-y;cursor:pointer;user-select:none}
+#book{position:relative;transition:transform .9s ease;touch-action:pan-y;cursor:pointer;user-select:none;-webkit-user-select:none}
 .leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.45,.05,.25,1)}
 .leaf.flipped{transform:rotateY(-180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
@@ -45,10 +45,12 @@ header b{color:var(--saffron)}
 .qa{margin-bottom:.7em;font-size:.93em}.qa b{color:var(--maroon)}
 .toc{list-style:none;margin:0}.toc li{display:flex;justify-content:space-between;border-bottom:.06em dotted #99a;padding:.3em 0}
 .toc span:last-child{color:var(--mute)}
-.ctrl{display:flex;gap:10px;align-items:center;padding:8px 0 14px}
-button{background:var(--saffron);color:#1a1205;border:0;border-radius:6px;padding:9px 18px;font-size:14px;font-weight:600;cursor:pointer}
+.ctrl{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;align-items:center;padding:8px 12px 14px}
+button{background:var(--saffron);color:#1a1205;border:0;border-radius:6px;padding:9px 18px;min-height:40px;font-size:clamp(13px,1.3vw,16px);font-weight:600;cursor:pointer;touch-action:manipulation}
 button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:3px solid #fff;outline-offset:2px}
-#ind{min-width:130px;text-align:center;font-size:14px;color:#aeb8cc}
+#ind{min-width:130px;text-align:center;font-size:clamp(13px,1.3vw,16px);color:#aeb8cc}
+/* short screens (phones in landscape): give the book all the height */
+@media (max-height:480px){header{display:none}.ctrl{padding:3px 8px 5px;gap:8px}button{padding:4px 12px;min-height:32px}.stage{padding:2px}}
 @media (prefers-reduced-motion:reduce){.leaf,#book{transition-duration:.01s}}
 </style>
 </head>
@@ -131,8 +133,8 @@ button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button
 <h3>8.1 Future-Proof Brand Architecture</h3>
 <p>The brand is not restricted to any single product category, so it remains relevant as DPL's portfolio evolves.</p>
 <div class="cols">
-<div><h3>Today</h3><ul><li>PP Woven Sacks</li><li>Cement Bags</li><li>Agricultural Packaging</li><li>Feed Bags</li></ul></div>
-<div><h3>Tomorrow</h3><ul><li>Jumbo Bags (FIBC)</li><li>BOPP Packaging</li><li>Industrial Fabrics</li><li>Geotextiles</li><li>Recycled Polymer Products</li><li>Sustainable Packaging Solutions</li></ul></div>
+<div><h3>Today</h3><ul><li>PP Woven Sacks</li><li>Cement Bags</li><li>Agricultural Packaging</li><li>Feed Bags</li><li>Jumbo Bags (FIBC)</li></ul></div>
+<div><h3>Tomorrow</h3><ul><li>BOPP Packaging</li><li>Industrial Fabrics</li><li>Geotextiles</li><li>Recycled Polymer Products</li><li>Sustainable Packaging Solutions</li></ul></div>
 </div>
 <p style="margin-top:.7em">POLTEN remains relevant across all future business segments.</p>
 <div class="pn">8</div></div>
@@ -206,13 +208,16 @@ button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button
   var book=document.getElementById("book"),stage=document.querySelector(".stage"),
       leaves=[].slice.call(book.querySelectorAll(".leaf")),N=leaves.length,cur=0,
       ind=document.getElementById("ind"),prevB=document.getElementById("prev"),nextB=document.getElementById("next");
-  var single=false,p=0;
+  var single=false,p=0,ratio=594/420;
   function fit(){
-    var w=stage.clientWidth-12,h=stage.clientHeight-12,sg=w<700;
+    var w=stage.clientWidth-12,h=stage.clientHeight-12;
+    /* one page when narrow OR portrait (phones, portrait tablets); two-page spread otherwise */
+    var sg=w<700||w<h*1.05;
     if(sg&&!single){single=true;p=cur===0?0:2*cur-1}
     if(!sg&&single){single=false;cur=Math.ceil(p/2)}
-    var pw=Math.max(120,Math.min(520,sg?w:w/2,h*420/594));
-    book.style.width=(pw*2)+"px";book.style.height=(pw*594/420)+"px";
+    /* largest page that fits both width and height; scales up to big monitors and TVs */
+    var pw=Math.max(120,Math.min(1100,sg?w:w/2,h/ratio));
+    book.style.width=(pw*2)+"px";book.style.height=(pw*ratio)+"px";
     book.querySelectorAll(".page").forEach(function(e){e.style.setProperty("--u",(pw/420).toFixed(3))});
     render(-1);
   }
@@ -261,7 +266,11 @@ button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button
     var d=document.documentElement;
     if(!document.fullscreenElement){d.requestFullscreen&&d.requestFullscreen()}else{document.exitFullscreen()}
   };
+  /* re-fit on any size change: window resize, rotation, address-bar show/hide, fullscreen, browser zoom */
+  if(window.ResizeObserver){new ResizeObserver(fit).observe(stage)}
   window.addEventListener("resize",fit);
+  window.addEventListener("orientationchange",function(){setTimeout(fit,200)});
+  if(window.visualViewport){window.visualViewport.addEventListener("resize",fit)}
   fit();
 })();
 </script>
