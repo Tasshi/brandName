@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
 <title>POLTEN Brand Proposal | Dungsam Polymers Limited</title>
 <style>
 :root{--ink:#16233a;--weave:#1d3050;--saffron:#e3921a;--maroon:#8c2b1e;--paper:#f3f2ee;--mute:#5b6577}
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{height:100vh;height:100dvh;background:#0e1626;color:var(--paper);font-family:"Segoe UI",Helvetica,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;overflow:hidden;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
 header{padding:10px 16px 2px;text-align:center;font-size:clamp(11px,1.4vw,16px);color:#aeb8cc}
 header b{color:var(--saffron)}
 .stage{overflow:hidden;flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;perspective:2600px;padding:6px}
-/* The book is always laid out at a fixed design size (two A-series pages, 840 x 594 px)
-   and then scaled to fit the screen. Every device therefore shows the identical two-page spread. */
-#book{position:relative;flex:none;width:840px;height:594px;transform-origin:center center;transition:transform .9s ease;touch-action:pan-y pinch-zoom;cursor:pointer;user-select:none;-webkit-user-select:none}
+/* Desktop: two A-series pages (840 x 594). Phone: one page (420 x 594). Both are scaled to fit. */
+#book{position:relative;flex:none;width:840px;height:594px;transform-origin:center center;transition:transform .9s ease;touch-action:pan-y;cursor:pointer}
+#book.single{width:420px}
 .leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.45,.05,.25,1)}
 .leaf.flipped{transform:rotateY(-180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
@@ -22,6 +23,13 @@ header b{color:var(--saffron)}
 .page{background:var(--paper);color:var(--ink);font-size:14px;line-height:1.45;padding:2.4em 2.2em 2em;box-shadow:0 .2em 1.2em rgba(0,0,0,.45)}
 .face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent 9%)}
 .face.bk::after{background:linear-gradient(270deg,rgba(0,0,0,.22),transparent 9%)}
+/* Single-page (phone) mode: no 3D leaf, one face visible at a time with a slide-in */
+.single .leaf{left:0;width:100%;transform:none!important;transform-style:flat;transition:none}
+.single .face,.single .face.bk{display:none;transform:none;backface-visibility:visible;-webkit-backface-visibility:visible}
+.single .face.show{display:block;animation:pg .35s ease}
+.single .face.cover.show,.single .face.back.show{display:flex}
+.single .face.bk::after{background:linear-gradient(90deg,rgba(0,0,0,.22),transparent 9%)}
+@keyframes pg{from{opacity:0;transform:translateX(var(--dx,24px))}to{opacity:1;transform:none}}
 .page h2{font-family:"Palatino Linotype","Book Antiqua",Georgia,serif;font-size:1.7em;line-height:1.15;margin-bottom:.5em;padding-bottom:.35em;border-bottom:.15em solid var(--saffron);display:inline-block}
 .page h3{font-family:"Palatino Linotype",Georgia,serif;font-size:1.1em;margin:.9em 0 .25em;color:var(--maroon)}
 .page p{margin-bottom:.7em}
@@ -51,12 +59,17 @@ header b{color:var(--saffron)}
 button{background:var(--saffron);color:#1a1205;border:0;border-radius:6px;padding:9px 18px;min-height:40px;font-size:clamp(13px,1.3vw,16px);font-weight:600;cursor:pointer;touch-action:manipulation}
 button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button:focus-visible{outline:3px solid #fff;outline-offset:2px}
 #ind{min-width:130px;text-align:center;font-size:clamp(13px,1.3vw,16px);color:#aeb8cc}
+/* Protection layers */
+.wm{position:fixed;inset:0;z-index:100;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='270' height='170'%3E%3Ctext x='15' y='95' transform='rotate(-25 135 85)' font-family='Arial' font-size='14' fill='%23808080' fill-opacity='.2'%3EDungsam Polymers - Confidential%3C/text%3E%3C/svg%3E")}
+#shield{position:fixed;inset:0;z-index:200;background:#0e1626;display:none;align-items:center;justify-content:center;text-align:center;padding:24px;color:#aeb8cc;font-size:16px}
+#shield.on{display:flex}
+@media print{body *{display:none!important}}
 @media (max-height:480px){header{display:none}.ctrl{padding:3px 8px 5px;gap:8px}button{padding:4px 12px;min-height:32px}.stage{padding:2px}}
-@media (prefers-reduced-motion:reduce){.leaf,#book{transition-duration:.01s}}
+@media (prefers-reduced-motion:reduce){.leaf,#book{transition-duration:.01s}.single .face.show{animation:none}}
 </style>
 </head>
 <body>
-<header><b>POLTEN</b> Brand Proposal &middot; tap the right or left side, swipe, or use the arrow keys &middot; rotate your phone sideways for a larger view</header>
+<header><b>POLTEN</b> Brand Proposal &middot; tap the right or left side, swipe, or use the arrow keys &middot; view only</header>
 <div class="stage"><div id="book">
 
 <!-- Leaf 1: cover / contents -->
@@ -203,20 +216,38 @@ button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button
   <button id="next" aria-label="Next page">Next</button>
   <button id="fs" aria-label="Toggle full screen">Full screen</button>
 </div>
+<div class="wm" aria-hidden="true"></div>
+<div id="shield">Content hidden for protection.<br>Return to this page to continue viewing.</div>
 
 <script>
 (function(){
-  var book=document.getElementById("book"),stage=document.querySelector(".stage"),
-      leaves=[].slice.call(book.querySelectorAll(".leaf")),N=leaves.length,cur=0,
-      ind=document.getElementById("ind"),prevB=document.getElementById("prev"),nextB=document.getElementById("next");
+  var book=document.getElementById("book"),stage=document.querySelector(".stage"),shield=document.getElementById("shield"),
+      leaves=[].slice.call(book.querySelectorAll(".leaf")),N=leaves.length,cur=0,fi=0,single=false,
+      ind=document.getElementById("ind"),prevB=document.getElementById("prev"),nextB=document.getElementById("next"),
+      faces=[];
+  leaves.forEach(function(l){faces.push(l.querySelector(".face:not(.bk)"),l.querySelector(".face.bk"))});
   var DW=840,DH=594,scale=1;
-  /* Always the two-page spread, scaled uniformly so the whole page is visible on any screen. */
+
   function fit(){
+    var vw=window.innerWidth,vh=window.innerHeight;
+    var s=(vw<=760)||(Math.min(vw,vh)<=520);   /* phones: one page at a time */
+    if(s!==single){
+      if(s){fi=cur===0?0:Math.min(2*N-1,2*cur-1)}else{cur=Math.ceil(fi/2)}
+      single=s;book.classList.toggle("single",single);
+    }
+    DW=single?420:840;
     var w=stage.clientWidth-12,h=stage.clientHeight-12;
     scale=Math.max(0.1,Math.min(w/DW,h/DH));
     render(-1);
   }
   function render(turn){
+    if(single){
+      faces.forEach(function(f,i){f.classList.toggle("show",i===fi)});
+      book.style.transform="scale("+scale.toFixed(4)+")";
+      ind.textContent="Page "+(fi+1)+" of "+(2*N);
+      prevB.disabled=fi===0;nextB.disabled=fi===2*N-1;
+      return;
+    }
     leaves.forEach(function(l,i){
       l.classList.toggle("flipped",i<cur);
       l.style.zIndex=(i===turn)?50:(i<cur?i+1:N-i);
@@ -226,13 +257,16 @@ button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button
     ind.textContent=cur===0?"Cover":(cur===N?"Back cover":"Pages "+(2*cur)+" - "+(2*cur+1)+" of "+(2*N));
     prevB.disabled=cur===0;nextB.disabled=cur===N;
   }
-  function next(){if(cur>=N)return;var t=cur;cur++;render(t);setTimeout(function(){render(-1)},950)}
-  function prev(){if(cur<=0)return;cur--;render(cur);setTimeout(function(){render(-1)},950)}
+  function next(){
+    if(single){if(fi<2*N-1){book.style.setProperty("--dx","24px");fi++;render(-1)}return}
+    if(cur>=N)return;var t=cur;cur++;render(t);setTimeout(function(){render(-1)},950)
+  }
+  function prev(){
+    if(single){if(fi>0){book.style.setProperty("--dx","-24px");fi--;render(-1)}return}
+    if(cur<=0)return;cur--;render(cur);setTimeout(function(){render(-1)},950)
+  }
   prevB.onclick=prev;nextB.onclick=next;
-  document.addEventListener("keydown",function(e){
-    if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" ")next();
-    if(e.key==="ArrowLeft"||e.key==="PageUp")prev();
-  });
+
   var sx=null;
   book.addEventListener("pointerdown",function(e){sx=e.clientX});
   book.addEventListener("pointerup",function(e){
@@ -245,6 +279,27 @@ button:hover{background:#f2a62f}button:disabled{opacity:.4;cursor:default}button
     var d=document.documentElement;
     if(!document.fullscreenElement){d.requestFullscreen&&d.requestFullscreen()}else{document.exitFullscreen&&document.exitFullscreen()}
   };
+
+  /* ---- Protection (deterrents; a browser cannot fully block screenshots) ---- */
+  function stop(e){e.preventDefault();return false}
+  ["contextmenu","copy","cut","paste","selectstart","dragstart"].forEach(function(t){document.addEventListener(t,stop)});
+  document.addEventListener("keydown",function(e){
+    var k=(e.key||"").toLowerCase(),mod=e.ctrlKey||e.metaKey;
+    if(e.key==="ArrowRight"||e.key==="PageDown"||e.key===" "){e.preventDefault();next();return}
+    if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();prev();return}
+    if(e.key==="F12"||(mod&&["c","x","a","s","p","u"].indexOf(k)>-1)||(mod&&e.shiftKey&&["i","j","c","s"].indexOf(k)>-1)){e.preventDefault()}
+    if(e.key==="PrintScreen"||(e.metaKey&&e.shiftKey&&["3","4","5","s"].indexOf(k)>-1)){hideNow(1500)}
+  });
+  document.addEventListener("keyup",function(e){
+    if(e.key==="PrintScreen"){try{navigator.clipboard.writeText("")}catch(x){}hideNow(1500)}
+  });
+  function hideNow(ms){shield.classList.add("on");if(ms)setTimeout(function(){if(!document.hidden&&document.hasFocus())shield.classList.remove("on")},ms)}
+  document.addEventListener("visibilitychange",function(){document.hidden?hideNow():shield.classList.remove("on")});
+  window.addEventListener("blur",function(){hideNow()});
+  window.addEventListener("focus",function(){shield.classList.remove("on")});
+  window.addEventListener("pagehide",function(){hideNow()});
+  window.addEventListener("beforeprint",function(){hideNow()});
+
   if(window.ResizeObserver){new ResizeObserver(fit).observe(stage)}
   window.addEventListener("resize",fit);
   window.addEventListener("orientationchange",function(){setTimeout(fit,200)});
